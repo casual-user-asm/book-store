@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %}Bookstore{% endblock title %}
+
+{% block content %}
+  <h1>Best Books of the Month</h1>
+  <div class="book-catalog">
+    {% for book in book_list|slice:":3" %}
+      <div class="book-item">
+        <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+        <h3 class="book-title"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h3>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="catalog">
+    <h2>More books in the <a href="{% url 'books:book_list' %}">catalog</a></h2>
+  </div>
+{% endblock content %}
